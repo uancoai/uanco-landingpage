@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Shield, FileText, CheckCircle2, UserCheck, Network, ZapOff, User, AlertTriangle, Check, UserCircle, ChevronLeft } from 'lucide-react';
+import { FileText, CheckCircle2, UserCheck, User, AlertTriangle, Check, UserCircle, ChevronLeft } from 'lucide-react';
 import { ViewType } from '../constants';
 
 interface SupportItem {
@@ -67,7 +67,8 @@ const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
     <div className="pt-20 bg-white">
       {/* Back Button Container */}
       <div className="max-w-7xl mx-auto px-6 pt-8 md:pt-12">
-        <button 
+        <button
+          type="button"
           onClick={() => onNavigate('home')}
           className="group flex items-center gap-2 text-[10px] md:text-xs font-bold text-zinc-400 uppercase tracking-widest hover:text-[#1A1A1A] transition-colors outline-none"
         >
@@ -199,7 +200,7 @@ const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 4. Who Uanco Is For */}
+      {/* 3. Who Uanco Is For */}
       <section className="py-16 md:py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-12 md:mb-20 text-center reveal">
