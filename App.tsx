@@ -51,7 +51,7 @@ const App: React.FC = () => {
             <PricingFounder />
           </>
         ) : currentView === 'about' ? (
-          <AboutView />
+          <AboutView onNavigate={handleNavigate} />
         ) : (
           <SuccessView />
         )}
