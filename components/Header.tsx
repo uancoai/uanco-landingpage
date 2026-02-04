@@ -36,13 +36,13 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           ))}
         </div>
 
-        {/* Mobile Action Button - Updated to Solid Black */}
+        {/* Mobile Action Button - Updated to 'Sign up' */}
         <div className="md:hidden">
           <button 
             onClick={() => onNavigate('home', '#pricing')}
             className="text-[10px] font-bold tracking-widest text-white uppercase bg-[#1A1A1A] px-5 py-2.5 rounded-full shadow-lg shadow-black/10 active:scale-95 transition-transform"
           >
-            Join
+            Sign up
           </button>
         </div>
 
