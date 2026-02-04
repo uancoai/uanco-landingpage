@@ -30,10 +30,10 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
             <h1 className="flex flex-col gap-1 mb-10">
               <span className="text-4xl lg:text-[62px] font-bold tracking-tight leading-[1.1] text-[#1A1A1A]">
-                Protect Your clinic.
+                Protect Your Clinic.
               </span>
               <span className="text-4xl lg:text-[62px] font-bold tracking-tight leading-[1.1] text-[#1A1A1A]">
-                UK regulations are coming.
+                UK Regulations Are Coming.
               </span>
             </h1>
 
