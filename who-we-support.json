@@ -1,0 +1,18 @@
+
+[
+  { 
+    "title": "Practitioners", 
+    "desc": "Experienced injectors who prioritise clinical standards and want support around early screening and decision-making.",
+    "image": "https://images.unsplash.com/photo-1590611357128-7a2861587bb2?auto=format&fit=crop&w=800&q=80"
+  },
+  { 
+    "title": "Clinic Owners", 
+    "desc": "Forward-thinking owners preparing for 2026, requiring consistent oversight across teams and patient journeys.",
+    "image": "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?auto=format&fit=crop&w=800&q=80"
+  },
+  { 
+    "title": "Educators", 
+    "desc": "Academies supporting graduates beyond the classroom, helping them transition into practice with safer processes.",
+    "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"
+  }
+]
