@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { Shield, FileText, CheckCircle2, UserCheck, Network, ZapOff, User, AlertTriangle, Check, UserCircle, ChevronLeft } from 'lucide-react';
+import { Shield, FileText, CheckCircle2, UserCheck, Network, ZapOff, User, AlertTriangle, Check, UserCircle, ChevronLeft, ArrowRight } from 'lucide-react';
 import { ViewType } from '../constants';
 
 const SUPPORT_DATA = [
@@ -96,6 +96,17 @@ const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
                   It doesn’t replace judgement. It supports it.
                 </p>
               </div>
+
+              {/* Hero CTA Button */}
+              <div className="reveal reveal-delay-3 mb-10 lg:mb-0">
+                <button 
+                  onClick={() => onNavigate('home', '#pricing')}
+                  className="px-10 py-4 rounded-full bg-[#1A1A1A] text-white font-bold text-sm uppercase tracking-widest hover:bg-black transition-all shadow-xl active:scale-[0.98] flex items-center gap-3"
+                >
+                  Sign up now
+                  <ArrowRight size={16} />
+                </button>
+              </div>
             </div>
 
             {/* Visual Card Component - Proportionally Optimized */}
@@ -185,7 +196,7 @@ const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
       </section>
 
       {/* 4. Who Uanco Is For */}
-      <section className="py-16 md:py-24 lg:py-32">
+      <section className="py-16 md:py-24 lg:py-32 border-b border-zinc-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-12 md:mb-20 text-center reveal">
             <h2 className="text-2xl md:text-4xl font-bold tracking-tight">Who We <span className="font-serif italic font-light text-zinc-400">Support.</span></h2>
@@ -209,6 +220,27 @@ const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
                 <p className="text-[11px] md:text-sm text-zinc-500 leading-relaxed">{target.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Final CTA Section */}
+      <section className="py-24 lg:py-36 bg-[#F9F9FB] overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+          <div className="max-w-3xl mx-auto space-y-8 reveal">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1A1A1A] leading-[1.1]">
+              Ready to <span className="font-serif italic font-light text-zinc-400">standardise</span> your <br className="hidden md:block" /> clinical protection?
+            </h2>
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button 
+                onClick={() => onNavigate('home', '#pricing')}
+                className="w-full sm:w-auto px-12 py-5 rounded-full bg-[#1A1A1A] text-white font-bold text-sm md:text-base uppercase tracking-widest hover:bg-black transition-all shadow-2xl active:scale-[0.98] flex items-center justify-center gap-3"
+              >
+                Sign up now
+                <ArrowRight size={18} />
+              </button>
+            </div>
+            <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest pt-4">Limited availability for Founder Access</p>
           </div>
         </div>
       </section>
