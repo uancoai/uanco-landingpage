@@ -1,9 +1,59 @@
 
-import React, { useState } from 'react';
-import { Check, Loader2, Sparkles, TrendingDown } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Check, Loader2, Sparkles, TrendingDown, Clock } from 'lucide-react';
 
 const PricingFounder: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<number | null>(null);
+
+  // Countdown Logic: 6-hour rolling timer for new visitors
+  useEffect(() => {
+    const COUNTDOWN_DURATION = 6 * 60 * 60 * 1000; // 6 hours in ms
+    const storageKey = 'uanco_founder_deadline';
+    
+    let deadline = localStorage.getItem(storageKey);
+    
+    if (!deadline) {
+      const newDeadline = Date.now() + COUNTDOWN_DURATION;
+      localStorage.setItem(storageKey, newDeadline.toString());
+      deadline = newDeadline.toString();
+    }
+
+    const targetTime = parseInt(deadline);
+
+    const updateTimer = () => {
+      const now = Date.now();
+      const difference = targetTime - now;
+
+      if (difference <= 0) {
+        // Reset if expired to keep the "rolling" feel for this specific promotion
+        const resetDeadline = Date.now() + COUNTDOWN_DURATION;
+        localStorage.setItem(storageKey, resetDeadline.toString());
+        setTimeLeft(COUNTDOWN_DURATION);
+      } else {
+        setTimeLeft(difference);
+      }
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatTime = (ms: number | null) => {
+    if (ms === null) return "06:00:00";
+    const totalSeconds = Math.floor(ms / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    return [
+      hours.toString().padStart(2, '0'),
+      minutes.toString().padStart(2, '0'),
+      seconds.toString().padStart(2, '0')
+    ].join(':');
+  };
 
   const handleStartSetup = () => {
     setIsLoading(true);
@@ -30,42 +80,48 @@ const PricingFounder: React.FC = () => {
             {/* 1. Subscription Header & Features */}
             <div className="p-8 md:p-12 lg:p-16 pb-6 md:pb-10 relative">
               
-              {/* Refined Mobile Badge & Status Area */}
-              <div className="flex flex-col sm:flex-row items-start justify-between mb-10 gap-6 sm:gap-4">
-                <div className="space-y-1">
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#1A1A1A] leading-tight">Exclusive offer</h3>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
-                    <p className="text-[10px] font-bold text-rose-500 uppercase tracking-[0.2em]">
-                      ENDING SOON
-                    </p>
+              {/* Premium Mobile Badge & Status Area */}
+              <div className="flex flex-col sm:flex-row items-start justify-between mb-12 gap-8 sm:gap-4">
+                <div className="space-y-3">
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight">Exclusive offer</h3>
+                  
+                  {/* Dynamic Countdown Clock replaces ENDING SOON */}
+                  <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-rose-50 border border-rose-100 w-fit shadow-sm">
+                    <Clock size={12} className="text-rose-500 animate-pulse" />
+                    <div className="flex flex-col">
+                      <p className="text-[8px] font-black text-rose-400 uppercase tracking-widest leading-none mb-0.5">Offer ends in</p>
+                      <p className="text-xs font-mono font-bold text-rose-600 tabular-nums leading-none">
+                        {formatTime(timeLeft)}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Immediate Saving Badge - Redesigned for Mobile to avoid overlap */}
-                <div className="flex flex-col items-start sm:items-end">
-                  <div className="bg-[#1A1A1A] text-white px-3 py-2 rounded-xl shadow-lg flex items-center gap-2 border border-white/10 mb-2">
+                {/* Immediate Saving Badge */}
+                <div className="flex flex-col items-start sm:items-end group">
+                  <div className="bg-[#1A1A1A] text-white px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-2 border border-white/10 mb-2 transition-transform group-hover:scale-105">
                     <TrendingDown size={14} className="text-emerald-400" />
                     <span className="text-[10px] font-bold uppercase tracking-widest">Saving £200</span>
                   </div>
-                  <p className="text-[9px] text-zinc-400 uppercase tracking-widest font-medium ml-1 sm:ml-0">Applied at checkout</p>
+                  <p className="text-[9px] text-zinc-400 uppercase tracking-widest font-bold ml-1 sm:ml-0 opacity-70">Applied at checkout</p>
                 </div>
               </div>
 
               {/* Price Display */}
-              <div className="flex items-end gap-3 mb-10">
-                <div className="flex flex-col">
-                  <span className="text-xl font-bold text-[#1A1A1A] line-through opacity-30 mb-[-4px]">
+              <div className="flex flex-col mb-12">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl font-bold text-zinc-300 line-through decoration-zinc-400 decoration-2">
                     £99
                   </span>
                   <div className="flex items-baseline">
-                    <span className="text-5xl md:text-6xl font-bold text-red-600 tracking-tighter">£49</span>
-                    <span className="text-zinc-400 font-medium ml-2 text-lg">/mo</span>
+                    <span className="text-6xl md:text-7xl font-bold text-red-600 tracking-tighter">£49</span>
+                    <span className="text-zinc-400 font-bold ml-2 text-xl">/mo</span>
                   </div>
                 </div>
+                <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest mt-2">Limited Founder Rate</p>
               </div>
               
-              <ul className="space-y-4 md:space-y-5">
+              <ul className="space-y-5 md:space-y-6">
                 {[
                   "3-month minimum commitment",
                   "Structured clinical triage workflow", 
@@ -75,10 +131,10 @@ const PricingFounder: React.FC = () => {
                   "Dedicated implementation support"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-4 text-sm text-gray-600">
-                    <div className="w-5 h-5 rounded-full bg-[#1A1A1A] flex-shrink-0 flex items-center justify-center text-white mt-0.5 shadow-sm">
-                      <Check size={10} strokeWidth={3} />
+                    <div className="w-6 h-6 rounded-full bg-[#1A1A1A] flex-shrink-0 flex items-center justify-center text-white mt-0 shadow-sm">
+                      <Check size={12} strokeWidth={3} />
                     </div>
-                    <span className="leading-tight font-medium">{item}</span>
+                    <span className="leading-snug font-medium pt-0.5">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -86,29 +142,30 @@ const PricingFounder: React.FC = () => {
 
             {/* 2. Clinical Implementation Sidebar */}
             <div className="md:row-span-2 bg-zinc-50 border-y md:border-y-0 md:border-l border-zinc-100 p-8 md:p-12 lg:p-16 flex flex-col justify-center">
-              <div className="space-y-8">
-                 <div className="space-y-3">
-                   <h4 className="text-sm font-bold text-zinc-400 uppercase tracking-[0.2em]">Implementation</h4>
+              <div className="space-y-10">
+                 <div className="space-y-4">
+                   <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-[0.2em]">Implementation</h4>
                    <div className="flex items-center gap-3">
-                     <p className="text-4xl font-bold text-[#1A1A1A]">£0</p>
-                     <span className="text-lg font-bold text-zinc-300 line-through">
+                     <p className="text-5xl font-bold text-red-600 tracking-tighter">£0</p>
+                     <span className="text-xl font-bold text-zinc-300 line-through">
                        £150
                      </span>
                    </div>
-                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-rose-100 shadow-sm">
-                     <Sparkles size={12} className="text-rose-500 fill-rose-500" />
-                     <p className="text-[10px] font-bold text-rose-600 uppercase tracking-widest">Waiver Today</p>
+                   {/* Updated Waiver Pill: Green Color Scheme & Text */}
+                   <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-emerald-50 border border-emerald-100 shadow-sm">
+                     <Sparkles size={12} className="text-emerald-500 fill-emerald-500" />
+                     <p className="text-[9px] font-black text-emerald-700 uppercase tracking-widest">Waiver if you sign up today</p>
                    </div>
                  </div>
 
-                 <div className="space-y-4 pt-8 border-t border-zinc-200">
-                   <p className="text-xs leading-relaxed text-gray-500 font-medium">
+                 <div className="space-y-5 pt-10 border-t border-zinc-200">
+                   <p className="text-xs leading-relaxed text-gray-500 font-semibold">
                      Your clinic profile, tone-of-voice alignment and policy integration.
                    </p>
-                   <ul className="space-y-3">
+                   <ul className="space-y-4">
                      {['Profile Build', 'Policy Alignment', 'Staff Onboarding'].map((benefit) => (
-                       <li key={benefit} className="text-[10px] font-bold text-[#1A1A1A] uppercase tracking-widest flex items-center gap-2">
-                         <div className="w-1 h-1 bg-black rounded-full"></div> {benefit}
+                       <li key={benefit} className="text-[10px] font-bold text-[#1A1A1A] uppercase tracking-widest flex items-center gap-3">
+                         <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full shadow-sm"></div> {benefit}
                        </li>
                      ))}
                    </ul>
@@ -117,11 +174,11 @@ const PricingFounder: React.FC = () => {
             </div>
 
             {/* 3. CTA Action Area */}
-            <div className="p-8 md:p-12 lg:p-16 pt-4 md:pt-4 pb-12 md:pb-16 bg-white md:bg-transparent">
+            <div className="p-8 md:p-12 lg:p-16 pt-6 md:pt-4 pb-12 md:pb-16 bg-white md:bg-transparent">
               <button 
                 onClick={handleStartSetup}
                 disabled={isLoading}
-                className="w-full py-5 rounded-full bg-[#1A1A1A] text-white font-bold text-base md:text-lg hover:bg-black transition-all active:scale-[0.98] shadow-2xl shadow-black/20 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-5 rounded-full bg-[#1A1A1A] text-white font-bold text-base md:text-lg hover:bg-black transition-all hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <>
@@ -132,11 +189,11 @@ const PricingFounder: React.FC = () => {
                   'Sign up now'
                 )}
               </button>
-              <div className="mt-6 flex flex-col items-center gap-1 opacity-40">
-                <p className="text-[9px] font-bold text-[#1A1A1A] uppercase tracking-[0.2em]">
+              <div className="mt-8 flex flex-col items-center gap-1 opacity-50">
+                <p className="text-[9px] font-black text-[#1A1A1A] uppercase tracking-[0.2em]">
                   Secure checkout by Stripe
                 </p>
-                <div className="h-px w-8 bg-zinc-200"></div>
+                <div className="h-px w-10 bg-zinc-200 mt-1"></div>
               </div>
             </div>
 
