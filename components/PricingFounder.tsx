@@ -1,64 +1,17 @@
 
-import React, { useState, useEffect } from 'react';
-import { Check, Loader2, Sparkles, TrendingDown, Clock } from 'lucide-react';
+import React, { useState } from 'react';
+import { Check, Loader2, Sparkles, TrendingDown, Users } from 'lucide-react';
 
 const PricingFounder: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [timeLeft, setTimeLeft] = useState<number | null>(null);
-
-  // Countdown Logic: 6-hour rolling timer for new visitors
-  useEffect(() => {
-    const COUNTDOWN_DURATION = 6 * 60 * 60 * 1000; // 6 hours in ms
-    const storageKey = 'uanco_founder_deadline';
-    
-    let deadline = localStorage.getItem(storageKey);
-    
-    if (!deadline) {
-      const newDeadline = Date.now() + COUNTDOWN_DURATION;
-      localStorage.setItem(storageKey, newDeadline.toString());
-      deadline = newDeadline.toString();
-    }
-
-    const targetTime = parseInt(deadline);
-
-    const updateTimer = () => {
-      const now = Date.now();
-      const difference = targetTime - now;
-
-      if (difference <= 0) {
-        // Reset if expired to keep the "rolling" feel for this specific promotion
-        const resetDeadline = Date.now() + COUNTDOWN_DURATION;
-        localStorage.setItem(storageKey, resetDeadline.toString());
-        setTimeLeft(COUNTDOWN_DURATION);
-      } else {
-        setTimeLeft(difference);
-      }
-    };
-
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const formatTime = (ms: number | null) => {
-    if (ms === null) return "06:00:00";
-    const totalSeconds = Math.floor(ms / 1000);
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-
-    return [
-      hours.toString().padStart(2, '0'),
-      minutes.toString().padStart(2, '0'),
-      seconds.toString().padStart(2, '0')
-    ].join(':');
-  };
+  
+  // To update the spots manually, change the number below:
+  const spotsLeft = 10;
 
   const handleStartSetup = () => {
     setIsLoading(true);
-    // Redirecting directly to the production Stripe checkout link
-    window.location.href = 'https://buy.stripe.com/8x228j7mm8CXaBZcz4bAs02';
+    // Redirecting directly to the user-provided Stripe checkout link
+    window.location.href = 'https://buy.stripe.com/test_8x23cuewBaBMbX9a5Z63K01';
   };
 
   return (
@@ -85,15 +38,12 @@ const PricingFounder: React.FC = () => {
                 <div className="space-y-3">
                   <h3 className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight">Exclusive offer</h3>
                   
-                  {/* Dynamic Countdown Clock replaces ENDING SOON */}
-                  <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-rose-50 border border-rose-100 w-fit shadow-sm">
-                    <Clock size={12} className="text-rose-500 animate-pulse" />
-                    <div className="flex flex-col">
-                      <p className="text-[8px] font-black text-rose-400 uppercase tracking-widest leading-none mb-0.5">Offer ends in</p>
-                      <p className="text-xs font-mono font-bold text-rose-600 tabular-nums leading-none">
-                        {formatTime(timeLeft)}
-                      </p>
-                    </div>
+                  {/* Scarcity Badge replaces the Countdown Clock */}
+                  <div className="flex items-center gap-2.5 px-3 py-2 rounded-full bg-rose-50 border border-rose-100 w-fit shadow-sm">
+                    <Users size={14} className="text-rose-500" />
+                    <p className="text-[10px] font-bold text-rose-600 uppercase tracking-widest leading-none">
+                      Only {spotsLeft} founder spots left
+                    </p>
                   </div>
                 </div>
 
