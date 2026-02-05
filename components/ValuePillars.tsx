@@ -1,46 +1,50 @@
 
 import React from 'react';
-import { ICONS, COLORS } from '../constants';
+import { ICONS } from '../constants';
 
 const ValuePillars: React.FC = () => {
   const pillars = [
     {
-      icon: ICONS.Clock,
+      // Fix: Cast to React.ReactElement<any> to allow additional props like className during cloning
+      icon: React.cloneElement(ICONS.Clock as React.ReactElement<any>, { className: "w-5 h-5 md:w-8 md:h-8" }),
       title: 'Time Saved.',
-      description: 'Pre-screen clients before booking so your time is protected.'
+      description: 'Pre-screen clients before booking.'
     },
     {
-      icon: ICONS.Shield,
+      // Fix: Cast to React.ReactElement<any> to allow additional props like className during cloning
+      icon: React.cloneElement(ICONS.Shield as React.ReactElement<any>, { className: "w-5 h-5 md:w-8 md:h-8" }),
       title: 'Reduce Risk.',
-      description: 'Catch suitability concerns early and keep clear, reliable records.'
+      description: 'Catch suitability concerns early.'
     },
     {
-      icon: ICONS.Lightbulb,
+      // Fix: Cast to React.ReactElement<any> to allow additional props like className during cloning
+      icon: React.cloneElement(ICONS.Lightbulb as React.ReactElement<any>, { className: "w-5 h-5 md:w-8 md:h-8" }),
       title: 'Total Clarity.',
-      description: 'Know what clients want, what’s slowing bookings, and where attention is needed.'
+      description: 'Know what clients want instantly.'
     }
   ];
 
   return (
-    <section className="py-24 lg:py-40 bg-gradient-to-b from-white via-[#FFF9FA] to-white" id="solutions">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-24">
-          <p className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.4em] mb-4">The Uanco Framework</p>
-          <h2 className="text-5xl lg:text-7xl font-bold tracking-tight mb-4 text-[#1A1A1A]">
-            Designed for the <span className="font-serif italic font-light text-zinc-400">smart clinic.</span>
+    <section className="py-8 md:py-24 lg:py-32 bg-gradient-to-b from-white via-[#FFF9FA] to-white" id="solutions">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="text-center mb-6 md:mb-16">
+          <p className="text-gray-400 text-[8px] md:text-[10px] font-bold uppercase tracking-[0.3em] mb-2">The Uanco Framework</p>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-[#1A1A1A] leading-tight">
+            Become a <span className="font-serif italic font-light text-zinc-400">safer clinic.</span>
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12 lg:gap-16">
+        {/* Compact 3-column grid on all screens */}
+        <div className="grid grid-cols-3 gap-2 md:gap-12 lg:gap-16">
           {pillars.map((pillar, idx) => (
-            <div key={idx} className="group flex flex-col items-center text-center p-10 rounded-[3rem] bg-white border border-zinc-100 transition-all duration-500 hover:bg-white hover:shadow-2xl hover:shadow-black/5">
-              <div className="mb-10 p-7 rounded-[2rem] bg-zinc-50 border border-zinc-100 text-[#1A1A1A] transition-all duration-500 group-hover:scale-110 group-hover:bg-white group-hover:shadow-lg group-hover:shadow-rose-100/50">
+            <div key={idx} className="group flex flex-col items-center text-center p-3 md:p-10 rounded-[1.5rem] md:rounded-[3rem] bg-white border border-zinc-50 md:border-zinc-100 transition-all duration-500 hover:shadow-xl hover:shadow-black/5">
+              <div className="mb-3 md:mb-10 p-3 md:p-7 rounded-xl md:rounded-[2rem] bg-zinc-50 border border-zinc-50 text-[#1A1A1A] transition-all duration-500 group-hover:scale-105 group-hover:bg-white group-hover:shadow-md">
                 {pillar.icon}
               </div>
-              <h4 className="text-2xl font-bold mb-5 tracking-tight text-[#1A1A1A]">
+              <h4 className="text-[10px] sm:text-xs md:text-2xl font-bold mb-1 md:mb-5 tracking-tight text-[#1A1A1A]">
                 {pillar.title}
               </h4>
-              <p className="text-gray-500 font-normal leading-relaxed text-sm">
+              <p className="text-[9px] sm:text-[10px] md:text-base text-gray-400 md:text-gray-500 font-normal leading-tight md:leading-relaxed">
                 {pillar.description}
               </p>
             </div>
