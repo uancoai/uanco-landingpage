@@ -57,8 +57,8 @@ const PricingFounder: React.FC = () => {
 
   const handleStartSetup = () => {
     setIsLoading(true);
-    // Redirecting directly to the user-provided Stripe checkout link
-    window.location.href = 'https://buy.stripe.com/test_8x23cuewBaBMbX9a5Z63K01';
+    // Redirecting directly to the production Stripe checkout link
+    window.location.href = 'https://buy.stripe.com/8x228j7mm8CXaBZcz4bAs02';
   };
 
   return (
