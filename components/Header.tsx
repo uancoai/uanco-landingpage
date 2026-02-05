@@ -8,7 +8,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100/50">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl border-b border-gray-100/80">
       <div className="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
         {/* Logo - Unified with Footer */}
         <div className="flex-shrink-0">
@@ -36,11 +36,11 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           ))}
         </div>
 
-        {/* Mobile Action Button - Updated to 'Sign up' */}
+        {/* Mobile Action Button - Updated with premium styling */}
         <div className="md:hidden">
           <button 
             onClick={() => onNavigate('home', '#pricing')}
-            className="text-[10px] font-bold tracking-widest text-white uppercase bg-[#1A1A1A] px-5 py-2.5 rounded-full shadow-lg shadow-black/10 active:scale-95 transition-transform"
+            className="text-[10px] font-bold tracking-[0.15em] text-white uppercase bg-[#1A1A1A] px-6 py-2.5 rounded-full shadow-lg shadow-black/5 active:scale-95 transition-all"
           >
             Sign up
           </button>

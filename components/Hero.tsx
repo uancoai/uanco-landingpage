@@ -9,10 +9,10 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const VideoElement = ({ isMobile = false }) => (
-    <div className={`relative w-full ${isMobile ? 'max-w-[260px] mb-6' : 'max-w-[480px] ml-auto'} mx-auto`}>
-      <div className="absolute -inset-4 md:-inset-10 bg-gradient-to-tr from-purple-100/20 via-transparent to-blue-100/20 rounded-[3rem] md:rounded-[4.5rem] blur-2xl -z-10 animate-pulse"></div>
+    <div className={`relative w-full ${isMobile ? 'max-w-[280px] mt-10 mb-8' : 'max-w-[480px] ml-auto'} mx-auto`}>
+      <div className="absolute -inset-4 md:-inset-10 bg-gradient-to-tr from-purple-100/30 via-transparent to-blue-100/30 rounded-[3rem] md:rounded-[4.5rem] blur-2xl -z-10 animate-pulse"></div>
       
-      <div className="relative overflow-hidden rounded-[2rem] md:rounded-[4rem] border-[4px] md:border-[12px] border-white shadow-[0_20px_60px_-10px_rgba(0,0,0,0.1)] aspect-[4/5] bg-zinc-50 group transform hover:-translate-y-1 transition-transform duration-700 ease-out">
+      <div className="relative overflow-hidden rounded-[2.5rem] md:rounded-[4rem] border-[4px] md:border-[12px] border-white shadow-[0_30px_70px_-15px_rgba(0,0,0,0.12)] aspect-[4/5] bg-zinc-50 group transform hover:-translate-y-1 transition-transform duration-700 ease-out">
         <video 
           autoPlay 
           muted 
@@ -43,24 +43,24 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   );
 
   return (
-    <section className="relative pt-16 pb-6 md:pt-32 md:pb-24 lg:pt-44 lg:pb-36 overflow-hidden bg-white">
+    <section className="relative pt-24 pb-12 md:pt-32 md:pb-24 lg:pt-44 lg:pb-36 overflow-hidden bg-white">
       <div className="absolute top-[-10%] right-[-10%] w-[300px] md:w-[800px] h-[300px] md:h-[800px] bg-purple-50/20 rounded-full blur-[80px] md:blur-[140px] pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:gap-24 lg:items-center lg:text-left">
           
           <div className="flex flex-col items-center lg:items-start relative max-w-2xl">
-            <h1 className="flex flex-col gap-0.5 mb-4 md:mb-10">
-              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-[62px] font-bold tracking-tight leading-[1.1] text-red-600">
+            <h1 className="flex flex-col gap-1 mb-6 md:mb-10">
+              <span className="text-[34px] sm:text-4xl md:text-5xl lg:text-[62px] font-bold tracking-tight leading-[1.1] text-red-600">
                 Are you covered?
               </span>
-              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-[62px] font-bold tracking-tight leading-[1.1] text-[#1A1A1A]">
+              <span className="text-[34px] sm:text-4xl md:text-5xl lg:text-[62px] font-bold tracking-tight leading-[1.1] text-[#1A1A1A]">
                 We're here to help.
               </span>
             </h1>
 
-            <div className="max-w-[280px] sm:max-w-md lg:max-w-xl mb-6 md:mb-12">
-              <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-zinc-400 leading-snug font-light">
+            <div className="max-w-md lg:max-w-xl mb-8 md:mb-12">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-zinc-400 leading-snug font-light px-4 lg:px-0">
                 In 2026 new regulatory direction requires aesthetic practitioners to have records of all clients screening.
               </p>
             </div>
@@ -69,16 +69,16 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               <VideoElement isMobile={true} />
             </div>
 
-            <div className="flex flex-col items-center lg:items-start gap-4 md:gap-6 w-full mb-8 lg:mb-0">
+            <div className="flex flex-col items-center lg:items-start gap-5 md:gap-6 w-full mb-8 lg:mb-0">
               <button 
                 onClick={() => onNavigate('home', '#pricing')}
-                className="w-full sm:w-auto px-10 md:px-16 py-3.5 md:py-5 rounded-full text-white font-bold text-sm sm:text-base bg-[#1A1A1A] hover:bg-black transition-all shadow-lg active:scale-95"
+                className="w-full sm:w-auto px-12 md:px-16 py-4 md:py-5 rounded-full text-white font-bold text-sm sm:text-base bg-[#1A1A1A] hover:bg-black transition-all shadow-xl active:scale-95"
               >
                 Get Access Now
               </button>
               <button 
                 onClick={() => onNavigate('about')} 
-                className="group flex items-center gap-2 text-[9px] sm:text-[11px] font-bold text-[#1A1A1A] uppercase tracking-[0.3em] hover:opacity-70 transition-all outline-none py-1"
+                className="group flex items-center gap-2 text-[10px] sm:text-[11px] font-bold text-[#1A1A1A] uppercase tracking-[0.4em] hover:opacity-70 transition-all outline-none py-1"
               >
                 LEARN MORE
               </button>

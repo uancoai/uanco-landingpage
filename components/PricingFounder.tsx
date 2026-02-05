@@ -15,13 +15,13 @@ const PricingFounder: React.FC = () => {
   };
 
   return (
-    <section className="pt-6 pb-12 md:py-24 lg:py-32 bg-gradient-to-br from-[#F0FFF4]/40 via-[#F9F9FB] to-[#F0F7FF]/40" id="pricing">
+    <section className="pt-8 pb-16 md:py-24 lg:py-32 bg-gradient-to-br from-[#F0FFF4]/40 via-[#F9F9FB] to-[#F0F7FF]/40" id="pricing">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="text-center mb-10 md:mb-20">
-           <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight text-[#1A1A1A] mb-4 md:mb-6">
+        <div className="text-center mb-12 md:mb-20">
+           <h2 className="text-[32px] sm:text-4xl md:text-6xl font-bold tracking-tight text-[#1A1A1A] mb-4 md:mb-6">
             Founder <span className="font-serif italic font-light text-zinc-400">Access.</span>
           </h2>
-          <p className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto px-4">
+          <p className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto px-6">
             Join a select group of high-standard practitioners shaping the future of clinical protection.
           </p>
         </div>
@@ -34,14 +34,14 @@ const PricingFounder: React.FC = () => {
             <div className="p-8 md:p-12 lg:p-16 pb-6 md:pb-10 relative">
               
               {/* Premium Mobile Badge & Status Area */}
-              <div className="flex flex-col sm:flex-row items-start justify-between mb-12 gap-8 sm:gap-4">
+              <div className="flex flex-col sm:flex-row items-start justify-between mb-10 md:mb-12 gap-6 sm:gap-4">
                 <div className="space-y-3">
                   <h3 className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight">Exclusive offer</h3>
                   
-                  {/* Scarcity Badge replaces the Countdown Clock */}
+                  {/* Scarcity Badge */}
                   <div className="flex items-center gap-2.5 px-3 py-2 rounded-full bg-rose-50 border border-rose-100 w-fit shadow-sm">
                     <Users size={14} className="text-rose-500" />
-                    <p className="text-[10px] font-bold text-rose-600 uppercase tracking-widest leading-none">
+                    <p className="text-[10px] font-bold text-rose-600 uppercase tracking-[0.1em] leading-none">
                       Only {spotsLeft} founder spots left
                     </p>
                   </div>
@@ -58,7 +58,7 @@ const PricingFounder: React.FC = () => {
               </div>
 
               {/* Price Display */}
-              <div className="flex flex-col mb-12">
+              <div className="flex flex-col mb-10 md:mb-12">
                 <div className="flex items-center gap-3">
                   <span className="text-2xl font-bold text-zinc-300 line-through decoration-zinc-400 decoration-2">
                     £99
@@ -68,7 +68,7 @@ const PricingFounder: React.FC = () => {
                     <span className="text-zinc-400 font-bold ml-2 text-xl">/mo</span>
                   </div>
                 </div>
-                <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest mt-2">Limited Founder Rate</p>
+                <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-[0.2em] mt-2">Limited Founder Rate</p>
               </div>
               
               <ul className="space-y-5 md:space-y-6">
@@ -101,10 +101,14 @@ const PricingFounder: React.FC = () => {
                        £150
                      </span>
                    </div>
-                   {/* Updated Waiver Pill: Green Color Scheme & Text */}
-                   <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-emerald-50 border border-emerald-100 shadow-sm">
-                     <Sparkles size={12} className="text-emerald-500 fill-emerald-500" />
-                     <p className="text-[9px] font-black text-emerald-700 uppercase tracking-widest">Waiver if you sign up today</p>
+                   <div className="flex flex-col gap-3">
+                    <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-emerald-50 border border-emerald-100 shadow-sm w-fit">
+                      <Sparkles size={12} className="text-emerald-500 fill-emerald-500" />
+                      <p className="text-[9px] font-black text-emerald-700 uppercase tracking-widest leading-none">Waiver if you sign up today</p>
+                    </div>
+                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] ml-1">
+                      CODE - FOUNDERACCESS
+                    </p>
                    </div>
                  </div>
 
@@ -124,11 +128,11 @@ const PricingFounder: React.FC = () => {
             </div>
 
             {/* 3. CTA Action Area */}
-            <div className="p-8 md:p-12 lg:p-16 pt-6 md:pt-4 pb-12 md:pb-16 bg-white md:bg-transparent">
+            <div className="p-8 md:p-12 lg:p-16 pt-2 md:pt-4 pb-12 md:pb-16 bg-white md:bg-transparent">
               <button 
                 onClick={handleStartSetup}
                 disabled={isLoading}
-                className="w-full py-5 rounded-full bg-[#1A1A1A] text-white font-bold text-base md:text-lg hover:bg-black transition-all hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-5 rounded-full bg-[#1A1A1A] text-white font-bold text-base md:text-lg hover:bg-black transition-all hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl shadow-black/10"
               >
                 {isLoading ? (
                   <>
