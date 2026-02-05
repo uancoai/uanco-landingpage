@@ -1,48 +1,33 @@
 
-import React, { useEffect, useState } from 'react';
-import { FileText, CheckCircle2, UserCheck, User, AlertTriangle, Check, UserCircle, ChevronLeft } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { Shield, FileText, CheckCircle2, UserCheck, Network, ZapOff, User, AlertTriangle, Check, UserCircle, ChevronLeft } from 'lucide-react';
 import { ViewType } from '../constants';
 
-interface SupportItem {
-  title: string;
-  desc: string;
-  image: string;
-}
+const SUPPORT_DATA = [
+  { 
+    title: "Practitioners", 
+    desc: "Experienced injectors who prioritise clinical standards and want support around early screening and decision-making.",
+    image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=800&q=80"
+  },
+  { 
+    title: "Clinic Owners", 
+    desc: "Forward-thinking owners preparing for 2026, requiring consistent oversight across teams and patient journeys.",
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80"
+  },
+  { 
+    title: "Educators", 
+    desc: "Academies supporting graduates beyond the classroom, helping them transition into practice with safer processes.",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80"
+  }
+];
 
 interface AboutViewProps {
   onNavigate: (view: ViewType, anchor?: string) => void;
 }
 
 const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
-  const [supportData, setSupportData] = useState<SupportItem[]>([]);
-
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // Fetch dynamic content for "Who We Support"
-    fetch('/who-we-support.json')
-      .then(res => res.json())
-      .then(data => setSupportData(data))
-      .catch(err => {
-        console.warn("Dynamic support data not found, using fallbacks.", err);
-        setSupportData([
-          { 
-            title: "Practitioners", 
-            desc: "Experienced injectors who prioritise clinical standards and want support around early screening and decision-making.",
-            image: "https://images.unsplash.com/photo-1590611357128-7a2861587bb2?auto=format&fit=crop&w=800&q=80"
-          },
-          { 
-            title: "Clinic Owners", 
-            desc: "Forward-thinking owners preparing for 2026, requiring consistent oversight across teams and patient journeys.",
-            image: "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?auto=format&fit=crop&w=800&q=80"
-          },
-          { 
-            title: "Educators", 
-            desc: "Academies supporting graduates beyond the classroom, helping them transition into practice with safer processes.",
-            image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"
-          }
-        ]);
-      });
 
     const observerOptions = {
       threshold: 0.1,
@@ -67,8 +52,7 @@ const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
     <div className="pt-20 bg-white">
       {/* Back Button Container */}
       <div className="max-w-7xl mx-auto px-6 pt-8 md:pt-12">
-        <button
-          type="button"
+        <button 
           onClick={() => onNavigate('home')}
           className="group flex items-center gap-2 text-[10px] md:text-xs font-bold text-zinc-400 uppercase tracking-widest hover:text-[#1A1A1A] transition-colors outline-none"
         >
@@ -200,16 +184,16 @@ const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 3. Who Uanco Is For */}
+      {/* 4. Who Uanco Is For */}
       <section className="py-16 md:py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-12 md:mb-20 text-center reveal">
             <h2 className="text-2xl md:text-4xl font-bold tracking-tight">Who We <span className="font-serif italic font-light text-zinc-400">Support.</span></h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-            {supportData.map((target, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-10">
+            {SUPPORT_DATA.map((target, i) => (
               <div key={i} className="group cursor-default reveal">
-                <div className="mb-6 rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden aspect-[4/3] relative bg-zinc-100">
+                <div className="mb-6 rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden aspect-video relative bg-zinc-100 shadow-sm border border-zinc-100">
                    <img 
                     src={target.image} 
                     alt={target.title} 
@@ -218,7 +202,7 @@ const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
                     onLoad={(e) => (e.currentTarget.classList.add('opacity-100'))}
                    />
                 </div>
-                <h4 className="text-base md:text-xl font-bold mb-3 md:mb-4 flex items-center gap-3">
+                <h4 className="text-base md:text-lg font-bold mb-2 md:mb-3 flex items-center gap-3">
                   {target.title}
                   <div className="w-6 h-px bg-zinc-200"></div>
                 </h4>
