@@ -123,7 +123,6 @@ const PricingFounder: React.FC = () => {
               
               <ul className="space-y-5 md:space-y-6">
                 {[
-                  "3-month minimum commitment",
                   "Structured clinical triage workflow", 
                   "Defensible clinical audit trails", 
                   "Clinic insight dashboard", 
