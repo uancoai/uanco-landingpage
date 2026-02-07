@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ShieldCheck, ChevronRight } from 'lucide-react';
+import { Shield, CheckCircle2 } from 'lucide-react';
 import { ViewType } from '../constants';
 
 interface HeroProps {
@@ -8,86 +8,47 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
-  const VideoElement = ({ isMobile = false }) => (
-    <div className={`relative w-full ${isMobile ? 'max-w-[280px] mt-10 mb-8' : 'max-w-[480px] ml-auto'} mx-auto`}>
-      <div className="absolute -inset-4 md:-inset-10 bg-gradient-to-tr from-purple-100/30 via-transparent to-blue-100/30 rounded-[3rem] md:rounded-[4.5rem] blur-2xl -z-10 animate-pulse"></div>
-      
-      <div className="relative overflow-hidden rounded-[2.5rem] md:rounded-[4rem] border-[4px] md:border-[12px] border-white shadow-[0_30px_70px_-15px_rgba(0,0,0,0.12)] aspect-[4/5] bg-zinc-50 group transform hover:-translate-y-1 transition-transform duration-700 ease-out">
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          poster="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80"
-          className="w-full h-full object-cover grayscale-[0.6] group-hover:grayscale-0 transition-all duration-1000 ease-in-out scale-105 group-hover:scale-100"
-        >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-dermatologist-examining-a-patients-face-with-a-magnifying-glass-40321-large.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors pointer-events-none"></div>
-      </div>
-
-      {!isMobile && (
-        <div className="hidden lg:block absolute -left-12 top-1/4 p-4 bg-white rounded-2xl shadow-xl border border-zinc-100 animate-bounce-slow">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
-              <ShieldCheck size={18} />
-            </div>
-            <div className="pr-4">
-              <p className="text-[10px] font-bold text-zinc-400 uppercase">Status</p>
-              <p className="text-xs font-bold text-[#1A1A1A]">Verified Record</p>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-
   return (
-    <section className="relative pt-24 pb-12 md:pt-32 md:pb-24 lg:pt-44 lg:pb-36 overflow-hidden bg-white">
-      <div className="absolute top-[-10%] right-[-10%] w-[300px] md:w-[800px] h-[300px] md:h-[800px] bg-purple-50/20 rounded-full blur-[80px] md:blur-[140px] pointer-events-none"></div>
+    <section className="relative pt-16 pb-20 md:pt-32 md:pb-40 overflow-hidden bg-white">
+      {/* Soft Background Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] bg-emerald-50/40 blur-[120px] rounded-full pointer-events-none -z-0"></div>
       
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center text-center lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:gap-24 lg:items-center lg:text-left">
-          
-          <div className="flex flex-col items-center lg:items-start relative max-w-2xl">
-            <h1 className="flex flex-col gap-1 mb-6 md:mb-10">
-              <span className="text-[34px] sm:text-4xl md:text-5xl lg:text-[62px] font-bold tracking-tight leading-[1.1] text-red-600">
-                Are you covered?
-              </span>
-              <span className="text-[34px] sm:text-4xl md:text-5xl lg:text-[62px] font-bold tracking-tight leading-[1.1] text-[#1A1A1A]">
-                We're here to help.
-              </span>
-            </h1>
+      <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+        
+        {/* Headline */}
+        <h1 className="flex flex-col gap-0.5 mb-8 md:mb-10">
+          <span className="text-[40px] md:text-7xl font-bold tracking-tight text-[#1A1A1A] leading-[1.05] md:leading-[1.1]">
+            Stay protected
+          </span>
+          <span className="text-[40px] md:text-7xl font-bold tracking-tight leading-[1.05] md:leading-[1.1] text-[#1A1A1A]">
+            Get <span className="text-[#1A1A1A]">Uanco</span>
+          </span>
+        </h1>
 
-            <div className="max-w-md lg:max-w-xl mb-8 md:mb-12">
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-zinc-400 leading-snug font-light px-4 lg:px-0">
-                In 2026 new regulatory direction requires aesthetic practitioners to have records of all clients screening.
-              </p>
-            </div>
+        {/* Subtext */}
+        <div className="max-w-[320px] md:max-w-xl mx-auto mb-8 md:mb-10">
+          <p className="text-[17px] md:text-2xl text-zinc-600 leading-[1.5] md:leading-relaxed font-normal">
+            In <strong>2026</strong> new regulatory direction requires <strong>aesthetic practitioners</strong> to have records of all clients screening.
+          </p>
+        </div>
 
-            <div className="block lg:hidden w-full">
-              <VideoElement isMobile={true} />
-            </div>
+        {/* Social Proof */}
+        <div className="flex items-center gap-2 mb-8 md:mb-10 text-zinc-500 font-medium text-sm md:text-base">
+          <CheckCircle2 size={16} className="text-[#00D37F]" />
+          <span className="uppercase tracking-wider">1000+ SUCCESSFUL PRE-SCREENS</span>
+        </div>
 
-            <div className="flex flex-col items-center lg:items-start gap-5 md:gap-6 w-full mb-8 lg:mb-0">
-              <button 
-                onClick={() => onNavigate('home', '#pricing')}
-                className="w-full sm:w-auto px-12 md:px-16 py-4 md:py-5 rounded-full text-white font-bold text-sm sm:text-base bg-[#1A1A1A] hover:bg-black transition-all shadow-xl active:scale-95"
-              >
-                Get Access Now
-              </button>
-              <button 
-                onClick={() => onNavigate('about')} 
-                className="group flex items-center gap-2 text-[10px] sm:text-[11px] font-bold text-[#1A1A1A] uppercase tracking-[0.4em] hover:opacity-70 transition-all outline-none py-1"
-              >
-                LEARN MORE
-              </button>
-            </div>
-          </div>
-
-          <div className="hidden lg:block">
-            <VideoElement />
-          </div>
+        {/* CTA Area */}
+        <div className="flex flex-col items-center gap-4 md:gap-6 w-full max-w-[280px] sm:max-w-none">
+          <button 
+            onClick={() => onNavigate('home', '#pricing')}
+            className="w-full sm:w-auto px-12 py-5 rounded-full text-white font-bold text-lg bg-[#000000] hover:bg-zinc-900 transition-all shadow-2xl shadow-black/10 active:scale-95 flex items-center justify-center"
+          >
+            Get Early Access
+          </button>
+          <p className="text-[11px] md:text-sm font-medium text-zinc-400 uppercase tracking-widest">
+            Limited spots available
+          </p>
         </div>
       </div>
     </section>

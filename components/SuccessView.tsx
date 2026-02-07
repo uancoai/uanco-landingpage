@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Mail, ClipboardList, UserCheck, Shield } from 'lucide-react';
 
@@ -9,11 +10,11 @@ const SuccessView: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white px-6 py-24">
       <div className="max-w-xl w-full">
-        {/* Subtle Identity Marker */}
+        {/* Subtle Identity Marker - Keeping 'uanco' logo lowercase as per instructions */}
         <div className="flex justify-center mb-16">
           <div className="flex items-end select-none opacity-20">
             <span className="text-2xl font-serif italic font-bold text-[#1A1A1A] lowercase tracking-tighter leading-none">
-              uanco.
+              uanco
             </span>
             <span className="w-1 h-1 bg-[#1A1A1A] rounded-full mb-[3px] ml-0.5"></span>
           </div>
@@ -32,7 +33,7 @@ const SuccessView: React.FC = () => {
         {/* Process Explanation */}
         <div className="text-center mb-16">
           <p className="text-sm text-zinc-400 leading-relaxed max-w-md mx-auto">
-            We’ve started setting up your clinic profile so Uanco reflects your treatments, policies and suitability rules.
+            We’ve started setting up your clinic profile so Uanco reflects your treatments, policies, and suitability rules.
           </p>
         </div>
 
@@ -57,7 +58,7 @@ const SuccessView: React.FC = () => {
             <div className="space-y-1">
               <h4 className="text-sm font-bold text-[#1A1A1A]">Complete the clinical intake form</h4>
               <p className="text-sm text-zinc-400">
-                This short form helps us tailor Uanco’s clinical intelligence to your practice — including how enquiries are handled, what suitability rules apply and where practitioner judgement is required.
+                This gives us the details we need to configure your setup correctly.
               </p>
             </div>
           </div>
@@ -69,7 +70,7 @@ const SuccessView: React.FC = () => {
             <div className="space-y-1">
               <h4 className="text-sm font-bold text-[#1A1A1A]">Setup review</h4>
               <p className="text-sm text-zinc-400">
-                Once your intake is complete, a member of the Uanco team will review your setup and confirm everything is aligned before go-live.
+                A member of the Uanco team will be in touch shortly to complete onboarding.
               </p>
             </div>
           </div>

@@ -12,7 +12,7 @@ const PreBooking: React.FC = () => {
             What happens <span className="font-serif italic font-light text-zinc-400">before booking?</span>
           </h2>
           <p className="text-lg text-gray-500 leading-relaxed">
-            Inquiries are often messy, fragmented, and time-consuming. UANCO structures early client conversations to ensure every lead is clinically triaged before they ever reach your diary.
+            Inquiries are often messy, fragmented, and time-consuming. Uanco structures early client conversations to ensure every lead is clinically triaged before they ever reach your diary.
           </p>
         </div>
 

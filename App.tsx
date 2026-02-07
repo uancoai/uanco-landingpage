@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import ValuePillars from './components/ValuePillars';
 import RegulatoryShift from './components/RegulatoryShift';
 import PricingFounder from './components/PricingFounder';
+import Testimonial from './components/Testimonial';
 import FooterCTA from './components/FooterCTA';
 import AboutView from './components/AboutView';
 import SuccessView from './components/SuccessView';
@@ -14,7 +15,6 @@ const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewType>('home');
 
   useEffect(() => {
-    // Check if we are on the success page based on URL path
     if (window.location.pathname === '/success' || window.location.search.includes('session_id=')) {
       setCurrentView('success');
     }
@@ -47,7 +47,8 @@ const App: React.FC = () => {
           <>
             <Hero onNavigate={handleNavigate} />
             <ValuePillars />
-            <RegulatoryShift />
+            <Testimonial />
+            <RegulatoryShift onNavigate={handleNavigate} />
             <PricingFounder />
           </>
         ) : currentView === 'about' ? (
